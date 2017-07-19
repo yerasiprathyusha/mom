@@ -42,7 +42,7 @@ app.post('/api/mom', (req, res) => {
         "card": {
           "type": "Simple",
           "title": "Horoscope",
-          "content": "Today will provide you a new learning opportunity.  Stick with it and the possibilities will be endless."
+          "content": "Started meeting with id " + id[0]
          },
     		"reprompt": {
       		"outputSpeech": {
