@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('Inside my Index Page');
-  mailOptions.text = 'heloooo';
+  //mailOptions.text = 'heloooo';
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
