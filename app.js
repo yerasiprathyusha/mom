@@ -91,7 +91,6 @@ app.post('/api/mom', (req, res) => {
       		}
       	})
     });
-  }    
 });
 
 app.get('/api/mom/:mid', (req, res) => {
