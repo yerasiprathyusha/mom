@@ -52,7 +52,7 @@ app.post('/api/mom', (req, res) => {
     		},
     "directives": [
       {
-        "type": "Display.RenderTemplate",
+        "type": "RenderTemplate",
         "template": {
           "type": "BodyTemplate1",
           "token": "mom",
