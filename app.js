@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/mom', (req, res) => {
-  if(req.body.response.intent.name == 'StartIntent'){
+  if(req.body.request.intent.name == 'StartIntent'){
 	knex('meetinginfo').insert({start_time:Date.now()})
     .then(function(id){
     	console.log("Successfully created meeting record with Meeting Id =" + id);
