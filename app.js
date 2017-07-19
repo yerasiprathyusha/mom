@@ -51,17 +51,15 @@ app.post('/api/mom', (req, res) => {
       		}
     		},
     
-  "directives": [
-    {
-      "type": "Hint",
-      "hint": {
-        "type": "PlainText",
-        "text": "mid = ". id[0]
-      }
-    }
-  ]
-
-,
+        "directives": [
+        {
+          "type": "Hint",
+          "hint": {
+            "type": "PlainText",
+            "text": "mid = " + id[0]
+          }
+        }
+      ],
     		"shouldEndSession": false
    		}
     })
