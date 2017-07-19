@@ -28,12 +28,12 @@ var resp = {
       "response": {
         "outputSpeech": {
           "type": "PlainText",
-          "text": "Started meeting with id " 
+          "text": "" 
         },
         "card": {
           "type": "Simple",
           "title": "card output",
-          "content": "Started meeting with id " 
+          "content": "" 
          },
         "reprompt": {
           "outputSpeech": {
@@ -82,7 +82,8 @@ app.post('/api/mom', (req, res) => {
 	knex('meetinginfo').insert({start_time:Date.now()})
     .then(function(id){
       resp.sessionAttributes.data.mid = id[0];
-      resp.response.outputSpeech.text += id[0];
+      resp.response.outputSpeech.text = "Started meeting with id " + id[0];
+      resp.response.card.text = "Started meeting with id " + id[0];
     	console.log("Successfully created meeting record with Meeting Id =" + id);
       res.json(resp
     ).catch(function(err){
@@ -92,6 +93,23 @@ app.post('/api/mom', (req, res) => {
         		message:err.message
       		}
       	})
+    });
+  });
+  }else if(req.body.request.intent.name == 'StopIntent'){
+    knex('meetinginfo').where('id', '=', 1).update({stop_time:Date.now(), audio_path:"https://s3-us-west-1.amazonaws.com/mom/audio_recording/" + '1'})
+    .then(function(){
+      resp.sessionAttributes.data.mid = '1';
+      resp.response.outputSpeech.text = "Successfully Stoped meeting with id " + '1';
+      resp.response.card.text = "Successfully toped meeting with id " + '1';
+      console.log("Successfully Stoped meeting record with Meeting Id =" + '1');
+      googletranslater.syncrecord('./resources/audio.raw', 'LINEAR16', 16000, 'en-US', 1);
+      res.json(resp).catch(function(err){
+        res.status(500).json({
+          error:true,
+          data:{
+            message:err.message
+          }
+        })
     });
   });
   }
