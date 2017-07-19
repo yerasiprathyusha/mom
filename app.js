@@ -1,5 +1,5 @@
 var express = require('express');
-var https = require('https');
+//var https = require('https');
 var async = require('async')
 var http = require('http');
 var fs = require('fs');
@@ -15,14 +15,11 @@ var app = express();
 app.use(bodyParser.json());
 
 // This line is from the Node.js HTTPS documentation.
-var options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
+
 
 app.get('/', (req, res) => {
   res.send('Inside Index Page');
-  console.log("Inside Index Page");
+  console.log("Inside my Index Page");
 });
 
 app.post('/api/mom', (req, res) => {
