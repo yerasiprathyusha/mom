@@ -58,22 +58,14 @@ var mailOptions = {
   from: 'yerasiprathyusha@gmail.com',
   to: 'yerasiprathyusha@gmail.com', 
   //svajjaramatti@gmail.com, megharaj229@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'THank you for giving your gmail accounts'
+  subject: 'Summary of Meeting',
+  text: 'Dear \n '
 };
 
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('Inside my Index Page');
-  //mailOptions.text = 'heloooo';
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  }); 
   console.log("Inside my Index Page");
 });
 
@@ -112,6 +104,15 @@ app.post('/api/mom', (req, res) => {
         })
     });
   });
+  }else if(req.body.request.intent.name == 'MailIntent'){
+  transporter.sendMail(mailOptions, function(error, info){
+      mailOptions.text += "Thank you for attending the meeting";
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+       }
+    }); 
   }
 });
 
