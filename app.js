@@ -82,6 +82,7 @@ app.post('/api/mom', (req, res) => {
 	knex('meetinginfo').insert({start_time:Date.now()})
     .then(function(id){
       resp.sessionAttributes.data.mid = id[0];
+      resp.response.outputSpeech.text += id[0];
     	console.log("Successfully created meeting record with Meeting Id =" + id);
       res.json(resp
     ).catch(function(err){
