@@ -41,7 +41,7 @@ app.post('/api/mom', (req, res) => {
     		},
         "card": {
           "type": "Simple",
-          "title": "Horoscope",
+          "title": "card output",
           "content": "Started meeting with id " + id[0]
          },
     		"reprompt": {
@@ -50,6 +50,23 @@ app.post('/api/mom', (req, res) => {
         		"text": "have a nice Day"
       		}
     		},
+    "directives": [
+      {
+        "type": "Display.RenderTemplate",
+        "template": {
+          "type": "BodyTemplate1",
+          "token": "horoscope",
+          "title": "This is your horoscope",
+          
+          "textContent": {
+            "primaryText": {
+              "type": "PlainText",
+              "text": "You are going to have a <b>good day</b> today."
+            }
+          }
+        }
+      }
+    ],
     		"shouldEndSession": false
    		}
     })
