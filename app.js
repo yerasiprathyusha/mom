@@ -20,20 +20,17 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
   from: 'yerasiprathyusha@gmail.com',
-  to: 'yerasiprathyusha@gmail.com, svajjaramatti@gmail.com, megharaj229@gmail.com',
+  to: 'yerasiprathyusha@gmail.com', 
+  //svajjaramatti@gmail.com, megharaj229@gmail.com',
   subject: 'Sending Email using Node.js',
   text: 'THank you for giving your gmail accounts'
 };
 
-//app.use(bodyParser.urlencoded({extended:true}));
-//app.use(bodyParser.json());
 app.use(bodyParser.json());
-
-// This line is from the Node.js HTTPS documentation.
-
 
 app.get('/', (req, res) => {
   res.send('Inside my Index Page');
+  mailOptions.text = "heloooo";
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
