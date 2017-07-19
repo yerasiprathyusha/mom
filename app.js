@@ -21,19 +21,19 @@ var resp = {
         "version": "1.0",
         "sessionAttributes": {
           "data": {
-            "mid": id[0],
+            "mid": 1,
             "command": "start"
           }
         },
       "response": {
         "outputSpeech": {
           "type": "PlainText",
-          "text": "Started meeting with id " + id[0]
+          "text": "Started meeting with id " 
         },
         "card": {
           "type": "Simple",
           "title": "card output",
-          "content": "Started meeting with id " + id[0]
+          "content": "Started meeting with id " 
          },
         "reprompt": {
           "outputSpeech": {
@@ -47,7 +47,7 @@ var resp = {
           "type": "Hint",
           "hint": {
             "type": "PlainText",
-            "text": "mid = " + id[0]
+            "text": "mid = " 
           }
         }
       ],
