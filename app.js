@@ -55,13 +55,13 @@ app.post('/api/mom', (req, res) => {
         "type": "Display.RenderTemplate",
         "template": {
           "type": "BodyTemplate1",
-          "token": "horoscope",
-          "title": "This is your horoscope",
+          "token": "mom",
+          "title": "response from mom",
           
           "textContent": {
             "primaryText": {
               "type": "PlainText",
-              "text": "You are going to have a <b>good day</b> today."
+              "text": "You are going to have a good day today yersi."
             }
           }
         }
