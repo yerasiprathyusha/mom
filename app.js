@@ -59,7 +59,7 @@ var mailOptions = {
   to: 'yerasiprathyusha@gmail.com', 
   //svajjaramatti@gmail.com, megharaj229@gmail.com',
   subject: 'Summary of Meeting',
-  text: 'Dear \n '
+  text: ''
 };
 
 app.use(bodyParser.json());
@@ -105,14 +105,17 @@ app.post('/api/mom', (req, res) => {
     });
   });
   }else if(req.body.request.intent.name == 'MailIntent'){
-  transporter.sendMail(mailOptions, function(error, info){
-      mailOptions.text += "Thank you for attending the meeting";
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-       }
-    }); 
+    knex('meetinginfo').where({id:1}).select()
+    .then(function(info){
+      transporter.sendMail(mailOptions, function(error, info){
+        mailOptions.text = "Dear \n" + info[0].transcript + "\nThank you for attending the meeting";
+        if (error) {
+          console.log(error);
+        } else {
+         console.log('Email sent: ' + info.response);
+        }
+      }); 
+    });
   }
 });
 
