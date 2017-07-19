@@ -26,6 +26,7 @@
     "express": "*",
     "knex": "^0.13.0",
     "node-record-lpcm16": "0.3.0",
+    "nodemailer" : "*",
     "sqlite3": "*",
     "yargs": "8.0.2"
   },
