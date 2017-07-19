@@ -71,7 +71,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/mom', (req, res) => {
   console.log(req.body);
-  res.send(req.body);
+  //res.send(req.body);
   if(req.body.request.intent.name == 'StartIntent'){
 	knex('meetinginfo').insert({start_time:Date.now()})
     .then(function(id){
