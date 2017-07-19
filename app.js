@@ -108,7 +108,7 @@ app.post('/api/mom', (req, res) => {
     knex('meetinginfo').where({id:1}).select()
     .then(function(info){
       transporter.sendMail(mailOptions, function(error, info){
-        mailOptions.text = "Dear \n" + info[0].transcript + "\nThank you for attending the meeting";
+        mailOptions.text = "Dear \n" + info.transcript + "\nThank you for attending the meeting";
         if (error) {
           console.log(error);
         } else {
