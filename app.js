@@ -50,23 +50,18 @@ app.post('/api/mom', (req, res) => {
         		"text": "have a nice Day"
       		}
     		},
-    "directives": [
-      {
-        "type": "RenderTemplate",
-        "template": {
-          "type": "BodyTemplate1",
-          "token": "mom",
-          "title": "response from mom",
-          
-          "textContent": {
-            "primaryText": {
-              "type": "PlainText",
-              "text": "You are going to have a good day today yersi."
-            }
-          }
-        }
+    
+  "directives": [
+    {
+      "type": "Hint",
+      "hint": {
+        "type": "PlainText",
+        "text": "mid = ". id[0]
       }
-    ],
+    }
+  ]
+
+,
     		"shouldEndSession": false
    		}
     })
