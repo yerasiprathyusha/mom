@@ -51,7 +51,7 @@ var resp = {
           }
         }
       ],
-        "shouldEndSession": false
+        "shouldEndSession": true
       }
     };
 var mailOptions = {
