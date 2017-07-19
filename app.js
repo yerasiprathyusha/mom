@@ -17,7 +17,43 @@ var transporter = nodemailer.createTransport({
     pass: 'iamsorrydad'
   }
 });
-
+var resp = {
+        "version": "1.0",
+        "sessionAttributes": {
+          "data": {
+            "mid": id[0],
+            "command": "start"
+          }
+        },
+      "response": {
+        "outputSpeech": {
+          "type": "PlainText",
+          "text": "Started meeting with id " + id[0]
+        },
+        "card": {
+          "type": "Simple",
+          "title": "card output",
+          "content": "Started meeting with id " + id[0]
+         },
+        "reprompt": {
+          "outputSpeech": {
+            "type": "PlainText",
+            "text": "have a nice Day"
+          }
+        },
+    
+        "directives": [
+        {
+          "type": "Hint",
+          "hint": {
+            "type": "PlainText",
+            "text": "mid = " + id[0]
+          }
+        }
+      ],
+        "shouldEndSession": false
+      }
+    };
 var mailOptions = {
   from: 'yerasiprathyusha@gmail.com',
   to: 'yerasiprathyusha@gmail.com', 
@@ -46,44 +82,8 @@ app.post('/api/mom', (req, res) => {
 	knex('meetinginfo').insert({start_time:Date.now()})
     .then(function(id){
     	console.log("Successfully created meeting record with Meeting Id =" + id);
-      res.json({
-        "version": "1.0",
-  			"sessionAttributes": {
-    			"data": {
-      			"mid": id[0],
-      			"command": "start"
-    			}
-  			},
-  		"response": {
-    		"outputSpeech": {
-      		"type": "PlainText",
-      		"text": "Started meeting with id " + id[0]
-    		},
-        "card": {
-          "type": "Simple",
-          "title": "card output",
-          "content": "Started meeting with id " + id[0]
-         },
-    		"reprompt": {
-      		"outputSpeech": {
-        		"type": "PlainText",
-        		"text": "have a nice Day"
-      		}
-    		},
-    
-        "directives": [
-        {
-          "type": "Hint",
-          "hint": {
-            "type": "PlainText",
-            "text": "mid = " + id[0]
-          }
-        }
-      ],
-    		"shouldEndSession": false
-   		}
-    })
-    }).catch(function(err){
+      res.json(resp
+    ).catch(function(err){
       	res.status(500).json({
       		error:true,
       		data:{
