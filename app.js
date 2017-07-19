@@ -82,8 +82,8 @@ app.post('/api/mom', (req, res) => {
 	knex('meetinginfo').insert({start_time:Date.now()})
     .then(function(id){
     	console.log("Successfully created meeting record with Meeting Id =" + id);
-      res.json({resp
-    }).catch(function(err){
+      res.json(resp
+    ).catch(function(err){
       	res.status(500).json({
       		error:true,
       		data:{
