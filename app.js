@@ -39,13 +39,18 @@ app.post('/api/mom', (req, res) => {
       		"type": "PlainText",
       		"text": "Started meeting with id " + id[0]
     		},
+        "card": {
+          "type": "Simple",
+          "title": "Horoscope",
+          "content": "Today will provide you a new learning opportunity.  Stick with it and the possibilities will be endless."
+         },
     		"reprompt": {
       		"outputSpeech": {
         		"type": "PlainText",
         		"text": "have a nice Day"
       		}
     		},
-    		"shouldEndSession": true
+    		"shouldEndSession": false
    		}
     })
     }).catch(function(err){
