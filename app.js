@@ -1,6 +1,6 @@
 var express = require('express');
 //var https = require('https');
-var async = require('async')
+var async = require('async');
 var http = require('http');
 var fs = require('fs');
 var request = require('request');
