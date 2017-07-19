@@ -8,7 +8,22 @@ const bodyParser = require('body-parser');
 const googletranslater = require('./recognize.js');
 var knex = require('./dbsetup.js');
 var app = express();
+var nodemailer = require('nodemailer');
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'yerasiprathyusha@gmail.com',
+    pass: 'iamsorrydad'
+  }
+});
+
+var mailOptions = {
+  from: 'yerasiprathyusha@gmail@gmail.com',
+  to: 'yerasiprathyusha@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
 
 //app.use(bodyParser.urlencoded({extended:true}));
 //app.use(bodyParser.json());
@@ -19,6 +34,13 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('Inside my Index Page');
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  }); 
   console.log("Inside my Index Page");
 });
 
