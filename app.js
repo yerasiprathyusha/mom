@@ -70,7 +70,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/mom', (req, res) => {
-  console.log(req.body.context.System.device);
+  console.log('********' +req.body.context.System.device);
   //res.send(req.body);
   if(req.body.request.intent.name == 'StartIntent'){
 	knex('meetinginfo').insert({start_time:Date.now()})
@@ -80,7 +80,8 @@ app.post('/api/mom', (req, res) => {
       resp.response.card.text = "Started meeting with id " + id[0];
     	console.log("Successfully created meeting record with Meeting Id =" + id);
       res.json(resp
-    ).catch(function(err){
+    )
+    }).catch(function(err){
       	res.status(500).json({
       		error:true,
       		data:{
@@ -88,7 +89,7 @@ app.post('/api/mom', (req, res) => {
       		}
       	})
     });
-  });
+  
   }else if(req.body.request.intent.name == 'StopIntent'){
     knex('meetinginfo').where('id', '=', 1).update({stop_time:Date.now(), audio_path:"https://s3-us-west-1.amazonaws.com/mom/audio_recording/" + '1'})
     .then(function(){
