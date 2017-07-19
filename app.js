@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 
 app.get('/', (req, res) => {
-  res.send('Inside Index Page');
+  res.send('Inside my Index Page');
   console.log("Inside my Index Page");
 });
 
