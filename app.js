@@ -56,7 +56,7 @@ var resp = {
     };
 var mailOptions = {
   from: 'yerasiprathyusha@gmail.com',
-  to: 'yerasiprathyusha@gmail.com', 
+  to: 'yerasiprathyusha@gmail.com, y.prathyusha@globaledgesoft.com', 
   //svajjaramatti@gmail.com, megharaj229@gmail.com',
   subject: 'Summary of Meeting',
   text: ''
