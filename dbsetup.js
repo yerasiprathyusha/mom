@@ -12,6 +12,7 @@ knex.schema.createTableIfNotExists('meetinginfo', function(table) {
   table.integer('stop_time').unsigned();  
   table.string('audio_path');
   table.text('transcript');
+  table.text('deviceid');
 }).catch(function(e) {
   console.error(e);
 });
