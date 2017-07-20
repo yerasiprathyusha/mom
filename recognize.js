@@ -46,11 +46,33 @@ module.exports = { syncrecord:function syncRecognize (filename, encoding, sample
     sampleRateHertz: sampleRateHertz,
     languageCode: languageCode
   };
+  var nodemailer = require('nodemailer');
 
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'minutesofmeeting.alexa@gmail.com',
+      pass: 'p@ssw0rdCloud'
+    }
+  });
+  var mailOptions = {
+    from: 'yerasiprathyusha@gmail.com',
+    to: 'yerasiprathyusha@gmail.com, y.prathyusha@globaledgesoft.com, dk.vinay@globaledgesoft.com', 
+    subject: 'Minutes of Meeting',
+    text: ''
+  };
   // Detects speech in the audio file
   speech.recognize(filename, request)
     .then((results) => {
       const transcription = results[0];
+      mailOptions.text = "Dear, \n  " + results[0] + "\nThank you for attending the meeting";
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+         console.log('Email sent: ' + info.response);
+        }
+      });
       knex('meetinginfo').where('id', '=',mid).update({transcript:transcription})
       .then(function(){
         console.log('Successfully stored transcript');
