@@ -13,8 +13,8 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'yerasiprathyusha@gmail.com',
-    pass: 'iamsorrydad'
+    user: 'minutesofmeeting.alexa@gmail.com',
+    pass: 'p@ssw0rdCloud'
   }
 });
 var resp = {
@@ -111,7 +111,7 @@ app.post('/api/mom', (req, res) => {
     knex('meetinginfo').where({id:1}).select('transcript')
     .then(function(info){
       console.log("transcript = **" + info);
-      mailOptions.text = "Dear \n" + info + "\nThank you for attending the meeting";
+      mailOptions.text = "Dear, \n  " + info + "\nThank you for attending the meeting";
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
