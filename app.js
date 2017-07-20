@@ -91,13 +91,13 @@ app.post('/api/mom', (req, res) => {
     });
   
   }else if(req.body.request.intent.name == 'StopIntent'){
-    knex('meetinginfo').where('id', '=', 1).update({stop_time:Date.now(), audio_path:"https://s3-us-west-1.amazonaws.com/mom/audio_recording/" + '1'})
+    knex('meetinginfo').where('id', '=', req.body.request.intent.slots.Mid.value).update({stop_time:Date.now(), audio_path:"https://s3-us-west-1.amazonaws.com/mom/audio_recording/" + '1'})
     .then(function(){
-      resp.sessionAttributes.data.mid = '1';
-      resp.response.outputSpeech.text = "Successfully Stoped meeting with id " + '1';
-      resp.response.card.text = "Successfully toped meeting with id " + '1';
-      console.log("Successfully Stoped meeting record with Meeting Id =" + '1');
-      googletranslater.syncrecord('./resources/audio.raw', 'LINEAR16', 16000, 'en-US', 1);
+      resp.sessionAttributes.data.mid = req.body.request.intent.slots.Mid.value;
+      resp.response.outputSpeech.text = "Successfully Stoped meeting with id " + req.body.request.intent.slots.Mid.value;
+      resp.response.card.text = "Successfully toped meeting with id " + req.body.request.intent.slots.Mid.value;
+      console.log("Successfully Stoped meeting record with Meeting Id =" + req.body.request.intent.slots.Mid.value);
+      googletranslater.syncrecord('./resources/audio.raw', 'LINEAR16', 16000, 'en-US', req.body.request.intent.slots.Mid.value);
       res.json(resp)
     }).catch(function(err){
         res.status(500).json({
