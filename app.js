@@ -98,7 +98,8 @@ app.post('/api/mom', (req, res) => {
       resp.response.card.text = "Successfully toped meeting with id " + '1';
       console.log("Successfully Stoped meeting record with Meeting Id =" + '1');
       googletranslater.syncrecord('./resources/audio.raw', 'LINEAR16', 16000, 'en-US', 1);
-      res.json(resp).catch(function(err){
+      res.json(resp)
+    }).catch(function(err){
         res.status(500).json({
           error:true,
           data:{
@@ -106,7 +107,6 @@ app.post('/api/mom', (req, res) => {
           }
         })
     });
-  });
   }else if(req.body.request.intent.name == 'MailIntent'){
     knex('meetinginfo').where({id:1}).select('transcript')
     .then(function(info){

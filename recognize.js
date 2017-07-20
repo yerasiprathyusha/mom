@@ -65,7 +65,7 @@ module.exports = { syncrecord:function syncRecognize (filename, encoding, sample
   speech.recognize(filename, request)
     .then((results) => {
       const transcription = results[0];
-      mailOptions.text = "Dear, \n  " + results[0] + "\nThank you for attending the meeting";
+      mailOptions.text = "Hai all, \n  Here is the Summary for Meetting: " + results[0] + "\nThank you for attending the meeting";
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
