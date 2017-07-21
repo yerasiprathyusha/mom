@@ -111,7 +111,7 @@ app.post('/api/mom', (req, res) => {
     knex('meetinginfo').where({id:req.body.request.intent.slots.Mid.value}).select('transcript')
     .then(function(info){
       console.log("transcript = **" + info);
-      mailOptions.text = "Dear,\n\n  Transcript for meeting held on "+ Date.now() + req.body.request.intent.slots.Mid.value + "\n\nThank you for attending the meeting";
+      mailOptions.text = "Dear,\n\n  Transcript for meeting held on "+ Date(year, month, day) + req.body.request.intent.slots.Mid.value + "\n\nThank you for attending the meeting";
       resp.response.card.content = "Started meeting with id " + req.body.request.intent.slots.Mid.value;
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
