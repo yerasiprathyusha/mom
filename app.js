@@ -221,6 +221,7 @@ http.createServer(app).listen(5000, function(){
 	  table.integer('stop_time').unsigned();  
 	  table.string('audio_path');
 	  table.text('transcript');
+    table.text('deviceid');
 	}).catch(function(e) {
 	  console.error(e);
 	});
