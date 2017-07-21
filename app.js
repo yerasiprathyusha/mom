@@ -77,7 +77,7 @@ app.post('/api/mom', (req, res) => {
     .then(function(id){
       resp.sessionAttributes.data.mid = id[0];
       resp.response.outputSpeech.text = "Started meeting with id " + id[0];
-      resp.response.card.text = "Started meeting with id " + id[0];
+      resp.response.card.content = "Started meeting with id " + id[0];
     	console.log("Successfully created meeting record with Meeting Id =" + id);
       res.json(resp
     )
@@ -95,7 +95,7 @@ app.post('/api/mom', (req, res) => {
     .then(function(){
       resp.sessionAttributes.data.mid = req.body.request.intent.slots.Mid.value;
       resp.response.outputSpeech.text = "Successfully Stoped meeting with id " + req.body.request.intent.slots.Mid.value;
-      resp.response.card.text = "Successfully toped meeting with id " + req.body.request.intent.slots.Mid.value;
+      resp.response.card.content = "Successfully toped meeting with id " + req.body.request.intent.slots.Mid.value;
       console.log("Successfully Stoped meeting record with Meeting Id =" + req.body.request.intent.slots.Mid.value);
       googletranslater.syncrecord('./resources/audio.raw', 'LINEAR16', 16000, 'en-US', req.body.request.intent.slots.Mid.value);
       res.json(resp)
@@ -112,7 +112,7 @@ app.post('/api/mom', (req, res) => {
     .then(function(info){
       console.log("transcript = **" + info);
       mailOptions.text = "Dear,\n\n  Transcript for meeting with id=" + req.body.request.intent.slots.Mid.value + "\n\nThank you for attending the meeting";
-      resp.response.card.text = "Started meeting with id " + req.body.request.intent.slots.Mid.value;
+      resp.response.card.content = "Started meeting with id " + req.body.request.intent.slots.Mid.value;
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
