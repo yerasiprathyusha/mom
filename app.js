@@ -119,6 +119,14 @@ app.post('/api/mom', (req, res) => {
          console.log('Email sent: ' + info.response);
         }
       }); 
+    res.json(resp)
+    }).catch(function(err){
+        res.status(500).json({
+          error:true,
+          data:{
+            message:err.message
+          }
+        })
     });
   }
 });
