@@ -112,7 +112,7 @@ app.post('/api/mom', (req, res) => {
     .then(function(info){
       console.log("transcript = **" + info);
       console.log(Date(year, month, day));
-      mailOptions.text = "Dear,\n\n  Transcript for meeting held on "+ Date() + req.body.request.intent.slots.Mid.value + "\n\nThank you for attending the meeting";
+      mailOptions.text = "Dear Friends,\n\nThank you for attending the Meeting held on " + Date() + "! Here is the Summary of the meeting:\n"+ req.body.request.intent.slots.Mid.value + "\nPlease send your questions, comments and feedback to: minutesofmeeting.alexa@gmail.com\n\nRegards,\nCloud Team.";
       resp.response.card.content = "Started meeting with id " + req.body.request.intent.slots.Mid.value;
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
