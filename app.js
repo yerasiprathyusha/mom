@@ -112,6 +112,7 @@ app.post('/api/mom', (req, res) => {
     .then(function(info){
       console.log("transcript = **" + info);
       mailOptions.text = "Dear,\n\n  Transcript for meeting with id=" + req.body.request.intent.slots.Mid.value + "\n\nThank you for attending the meeting";
+      resp.response.card.text = "Started meeting with id " + req.body.request.intent.slots.Mid.value;
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
