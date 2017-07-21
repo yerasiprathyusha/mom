@@ -108,10 +108,10 @@ app.post('/api/mom', (req, res) => {
         })
     });
   }else if(req.body.request.intent.name == 'MailIntent'){
-    knex('meetinginfo').where({id:1}).select('transcript')
+    knex('meetinginfo').where({id:req.body.request.intent.slots.Mid.value}).select('transcript')
     .then(function(info){
       console.log("transcript = **" + info);
-      mailOptions.text = "Dear, \n  " + info + "\nThank you for attending the meeting";
+      mailOptions.text = "Dear,\n\n  Transcript for meeting with id=" + req.body.request.intent.slots.Mid.value + "\n\nThank you for attending the meeting";
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
