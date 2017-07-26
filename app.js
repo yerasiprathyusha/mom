@@ -73,7 +73,7 @@ app.post('/api/mom', (req, res) => {
   //console.log('********' +req.body.context.System.device);
   //res.send(req.body);
   if(req.body.request.intent.name == 'StartIntent'){
-    console.log(JSON.stringify(req.body.context.System);
+    console.log(JSON.stringify(req.body.context.System));
 	knex('meetinginfo').insert({start_time:Date.now()})
     .then(function(id){
       resp.sessionAttributes.data.mid = id[0];
